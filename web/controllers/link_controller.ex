@@ -24,10 +24,24 @@ defmodule Yaus.LinkController do
     end
   end
 
+  def redirect_to(conn, %{"link_id" => link_id}) do
+    link = Repo.get_by(Link, link_id: link_id)
+    case link do
+      nil -> 
+        conn
+        |> put_flash(:error, "Wrong shortened link")
+        |> redirect(to: shortener_path(conn, :index))
+      _   ->
+        conn
+        |> redirect(external: Map.get(link, :redirect_url))
+    end
+  end
+
   defp authenticate(conn, _) do
     case get_session(conn, :user_id) do
       nil ->
-        conn |> put_flash(:info, "You must be logged in") |> redirect(to: "/") |> halt
+        conn 
+        |> put_flash(:info, "You must be logged in") |> redirect(to: "/") |> halt
       _   ->
         conn
     end

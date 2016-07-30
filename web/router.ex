@@ -24,6 +24,7 @@ defmodule Yaus.Router do
     get "/logout", SessionController, :logout
     get "/edit/:link_id", LinkController, :edit
     get "/delete/:link_id", LinkController, :delete
+    get "/:link_id", LinkController, :redirect_to
   end
 
   # Other scopes may use custom stacks.
