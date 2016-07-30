@@ -1,6 +1,8 @@
 # Yaus
 ## Yet Another Url Shortener
 
+This app helps you to shorten URLs and manage this URLs under your own account. URLs are hased using non-cryptographic hash lib Murmur. Passwords stored using bcrypt.
+
 To start this app:
 
   * Install dependencies with `mix deps.get`
