@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Yaus - Yet Another Url Shortener</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="header">
+        <nav class="navigator">
+          <ul class="nav nav-tabs nav-justified">
+            <li><%= link "Home", to: main_page_path(@conn, :index) %></li>
+            <%= if get_session(@conn, :user_id) do %>
+              <li><%= link "My links", to: shortener_path(@conn, :index) %></li>
+              <li><%= link "Logout", to: session_path(@conn, :logout) %></li>
+            <% else %>
+              <li><%= link "Login", to: session_path(@conn, :login) %></li>
+              <li><%= link "Sign Up", to: user_path(@conn, :new) %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </header>
+
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <div class="jumbotron">
+      <main role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+      </div>
+    </div> <!-- /container -->
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<%= form_for @changeset, shortener_path(@conn, :create), fn f -> %>
+<div class="form-group">
+    <%= text_input f, :redirect_url, class: "form-control", placeholder: "URL" %>
+      <%= error_tag f, :redirect_url %>
+</div>
+<div class="form-group">
+    <%= submit "Add", class: "btn btn-primary" %>
+</div>
+<% end %>
+<div class="list-group">
+<%= for link <- @links do %>
+  <li class="list-group-item"><a href="/edit/<%= Map.get(link, :link_id) %>"><%= Map.get(link, :redirect_url) %></a></li>
+<% end %>
+</div>

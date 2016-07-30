@@ -1,0 +1,5 @@
+<div class="list-group">
+  <li class="list-group-item">Short URL: <a href="<%= @short_url %>"><%= @short_url %></a></li>
+  <li class="list-group-item">URL: <a href="<%= @link %>"><%= @link %></a></li>
+  <a href="/delete/<%= @link_id %>" class="list-group-item active">Delete</a>
+</div>
