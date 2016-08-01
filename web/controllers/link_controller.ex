@@ -6,9 +6,7 @@ defmodule Yaus.LinkController do
 
   def edit(conn, %{"link_id" => link_id}) do
     linkq = Repo.get_by(Link, link_id: link_id)
-    short_url = main_page_url(conn, :index) <> Map.get(linkq, :link_id)
-    link = Map.get(linkq, :redirect_url)
-    render conn, link: link, short_url: short_url, link_id: Map.get(linkq, :link_id)
+    render conn, link: Map.get(linkq, :redirect_url), short_url: main_page_url(conn, :index) <> Map.get(linkq, :link_id), link_id: Map.get(linkq, :link_id)
   end
 
   def delete(conn, %{"link_id" => link_id}) do
@@ -41,7 +39,9 @@ defmodule Yaus.LinkController do
     case get_session(conn, :user_id) do
       nil ->
         conn 
-        |> put_flash(:info, "You must be logged in") |> redirect(to: "/") |> halt
+        |> put_flash(:info, "You must be logged in") 
+        |> redirect(to: "/") 
+        |> halt
       _   ->
         conn
     end
