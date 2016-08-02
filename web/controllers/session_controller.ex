@@ -16,6 +16,7 @@ defmodule Yaus.SessionController do
       {:ok, user_id} ->
         conn
         |> put_session(:user_id, user_id)
+        |> configure_session(renew: true)
         |> put_flash(:info, "Logged in")
         |> redirect(to: main_page_path(conn, :index))
       :error ->
