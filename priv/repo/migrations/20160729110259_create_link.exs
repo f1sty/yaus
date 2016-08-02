@@ -9,7 +9,7 @@ defmodule Yaus.Repo.Migrations.CreateLink do
 
       timestamps()
     end
-    create unique_index(:links, [:redirect_url])
+    create unique_index(:links, [:link_id])
     create index(:links, [:user_id])
 
   end

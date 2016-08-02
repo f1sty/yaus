@@ -16,6 +16,6 @@ defmodule Yaus.Link do
     struct
     |> cast(params, [:link_id, :redirect_url, :user_id])
     |> validate_required([:link_id, :redirect_url, :user_id])
-    |> unique_constraint(:redirect_url)
+    |> unique_constraint(:link_id)
   end
 end
