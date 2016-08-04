@@ -1,11 +1,10 @@
 defmodule Yaus.Short do
   @moduledoc false
-
   use GenServer
 
   # APIs
-  def start_link(initial) do
-    GenServer.start_link(__MODULE__, initial, name: __MODULE__)
+  def start_link(name) do
+    GenServer.start_link(__MODULE__, :ok, name: name)
   end
 
   def hash_url(url, uid) do

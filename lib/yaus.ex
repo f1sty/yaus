@@ -13,7 +13,7 @@ defmodule Yaus do
       # Start the endpoint when the application starts
       supervisor(Yaus.Endpoint, []),
       # Start your own worker by calling: Yaus.Worker.start_link(arg1, arg2, arg3)
-      worker(Yaus.Short, [[]]),
+      supervisor(Yaus.Short.Supervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
